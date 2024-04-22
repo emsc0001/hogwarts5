@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Student {
+public class Teacher {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
@@ -17,15 +17,15 @@ public class Student {
   private House house;
   private Integer schoolYear; // 1-7
 
-  public Student() {
+  public Teacher() {
 
   }
 
-  public Student(String firstName, String lastName, House house, int schoolYear) {
+  public Teacher(String firstName, String lastName, House house, int schoolYear) {
     this(firstName, null, lastName, house, schoolYear);
   }
 
-  public Student(String firstName, String middleName, String lastName, House house, int schoolYear) {
+  public Teacher(String firstName, String middleName, String lastName, House house, int schoolYear) {
     this.firstName = firstName;
     this.middleName = middleName;
     this.lastName = lastName;
@@ -85,7 +85,7 @@ public class Student {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    Student student = (Student) o;
+    Teacher student = (Teacher) o;
     return Objects.equals(getFirstName(), student.getFirstName()) && Objects.equals(getMiddleName(), student.getMiddleName()) && Objects.equals(getLastName(), student.getLastName()) && Objects.equals(getHouse().getName(), student.getHouse().getName());
   }
 

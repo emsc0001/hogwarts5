@@ -1,20 +1,17 @@
 package dk.kea.dat3js.hogwarts5.config;
 
 import dk.kea.dat3js.hogwarts5.house.HouseRepository;
-import dk.kea.dat3js.hogwarts5.students.Student;
+import dk.kea.dat3js.hogwarts5.students.Teacher;
 import dk.kea.dat3js.hogwarts5.students.StudentRepository;
-import dk.kea.dat3js.hogwarts5.teachers.Teacher;
 import dk.kea.dat3js.hogwarts5.teachers.TeacherRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import dk.kea.dat3js.hogwarts5.house.House;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Component
 public class InitData implements CommandLineRunner {
@@ -38,21 +35,21 @@ public class InitData implements CommandLineRunner {
 
   private void createStudents() {
     // To avoid creating and re-creating the same students, we first get all those that already exist
-    Set<Student> existingStudents = new HashSet<>();
+    Set<Teacher> existingStudents = new HashSet<>();
     existingStudents.addAll(studentRepository.findAll());
 
-    Student harry = new Student("Harry", "James", "Potter", gryffindor, 5);
-    Student hermione = new Student("Hermione", "Jean", "Granger", gryffindor, 5);
-    Student ron = new Student("Ron", "Bilius", "Weasley", gryffindor, 5);
-    Student neville = new Student("Neville", "Frank", "Longbottom", gryffindor, 5);
-    Student ginny = new Student("Ginny", "Molly", "Weasley", gryffindor, 5);
-    Student fred = new Student("Fred", "Gideon", "Weasley", gryffindor, 5);
-    Student george = new Student("George", "Fabian", "Weasley", gryffindor, 5);
-    Student percy = new Student("Percy", "Ignatius", "Weasley", gryffindor, 5);
+    Teacher harry = new Teacher("Harry", "James", "Potter", gryffindor, 5);
+    Teacher hermione = new Teacher("Hermione", "Jean", "Granger", gryffindor, 5);
+    Teacher ron = new Teacher("Ron", "Bilius", "Weasley", gryffindor, 5);
+    Teacher neville = new Teacher("Neville", "Frank", "Longbottom", gryffindor, 5);
+    Teacher ginny = new Teacher("Ginny", "Molly", "Weasley", gryffindor, 5);
+    Teacher fred = new Teacher("Fred", "Gideon", "Weasley", gryffindor, 5);
+    Teacher george = new Teacher("George", "Fabian", "Weasley", gryffindor, 5);
+    Teacher percy = new Teacher("Percy", "Ignatius", "Weasley", gryffindor, 5);
 
-    Student draco = new Student("Draco", "", "Malfoy", slytherin, 5);
-    Student cedric = new Student("Cedric", "", "Diggory", hufflepuff, 6);
-    Student luna = new Student("Luna", "", "Lovegood", ravenclaw, 4);
+    Teacher draco = new Teacher("Draco", "", "Malfoy", slytherin, 5);
+    Teacher cedric = new Teacher("Cedric", "", "Diggory", hufflepuff, 6);
+    Teacher luna = new Teacher("Luna", "", "Lovegood", ravenclaw, 4);
 
     existingStudents.addAll(List.of(harry, hermione, ron, neville, ginny, fred, george, percy, draco, cedric, luna));
     studentRepository.saveAll(existingStudents);
@@ -60,15 +57,15 @@ public class InitData implements CommandLineRunner {
 
   private void createTeachers() {
     // To avoid creating and re-creating the same teachers, we first get all those that already exist
-    Set<Teacher> existingTeachers = new HashSet<>();
+    Set<dk.kea.dat3js.hogwarts5.teachers.Teacher> existingTeachers = new HashSet<>();
     existingTeachers.addAll(teacherRepository.findAll());
 
-    Teacher severus = new Teacher("Severus", "Prince", "Snape", slytherin, "Potions", LocalDate.of(1981, 11, 1));
-    Teacher minerva = new Teacher("Minerva", "", "McGonagall", gryffindor, "Transfiguration", LocalDate.of(1956, 12, 1));
-    Teacher filius = new Teacher("Filius", "", "Flitwick", ravenclaw, "Charms", LocalDate.of(1975, 9, 1));
-    Teacher pomona = new Teacher("Pomona", "", "Sprout", hufflepuff, "Herbology", LocalDate.of(1975, 9, 1));
-    Teacher sybill = new Teacher("Sybill", "Cassandra", "Trelawney", ravenclaw, "Divination", LocalDate.of(1979, 9, 1));
-    Teacher alastor = new Teacher("Alastor", "Mad-Eye", "Moody", gryffindor, "Defence Against the Dark Arts", LocalDate.of(1994, 9, 1));
+    dk.kea.dat3js.hogwarts5.teachers.Teacher severus = new dk.kea.dat3js.hogwarts5.teachers.Teacher("Severus", "Prince", "Snape", slytherin, "Potions", LocalDate.of(1981, 11, 1));
+    dk.kea.dat3js.hogwarts5.teachers.Teacher minerva = new dk.kea.dat3js.hogwarts5.teachers.Teacher("Minerva", "", "McGonagall", gryffindor, "Transfiguration", LocalDate.of(1956, 12, 1));
+    dk.kea.dat3js.hogwarts5.teachers.Teacher filius = new dk.kea.dat3js.hogwarts5.teachers.Teacher("Filius", "", "Flitwick", ravenclaw, "Charms", LocalDate.of(1975, 9, 1));
+    dk.kea.dat3js.hogwarts5.teachers.Teacher pomona = new dk.kea.dat3js.hogwarts5.teachers.Teacher("Pomona", "", "Sprout", hufflepuff, "Herbology", LocalDate.of(1975, 9, 1));
+    dk.kea.dat3js.hogwarts5.teachers.Teacher sybill = new dk.kea.dat3js.hogwarts5.teachers.Teacher("Sybill", "Cassandra", "Trelawney", ravenclaw, "Divination", LocalDate.of(1979, 9, 1));
+    dk.kea.dat3js.hogwarts5.teachers.Teacher alastor = new dk.kea.dat3js.hogwarts5.teachers.Teacher("Alastor", "Mad-Eye", "Moody", gryffindor, "Defence Against the Dark Arts", LocalDate.of(1994, 9, 1));
 
     existingTeachers.addAll(List.of(severus, minerva, filius, pomona, sybill, alastor));
     teacherRepository.saveAll(existingTeachers);

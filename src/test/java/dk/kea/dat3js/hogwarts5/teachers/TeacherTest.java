@@ -1,10 +1,11 @@
-package dk.kea.dat3js.hogwarts5.students;
+package dk.kea.dat3js.hogwarts5.teachers;
 
+import dk.kea.dat3js.hogwarts5.students.Teacher;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class StudentTest {
+class TeacherTest {
 
     @Test
     void getFullName() {

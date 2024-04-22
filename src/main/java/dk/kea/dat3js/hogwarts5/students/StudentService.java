@@ -30,7 +30,7 @@ public class StudentService {
 
   public Optional<StudentResponseDTO> updateIfExists(int id, StudentRequestDTO student) {
     if (studentRepository.existsById(id)) {
-      Student existingStudent = fromDTO(student);
+      Teacher existingStudent = fromDTO(student);
       existingStudent.setId(id);
       return Optional.of(toDTO(studentRepository.save(existingStudent)));
     } else {
@@ -40,9 +40,9 @@ public class StudentService {
   }
 
   public Optional<StudentResponseDTO> partialUpdate(int id, StudentRequestDTO student) {
-    Optional<Student> existingStudent = studentRepository.findById(id);
+    Optional<Teacher> existingStudent = studentRepository.findById(id);
     if(existingStudent.isPresent()) {
-      Student studentToUpdate = existingStudent.get();
+      Teacher studentToUpdate = existingStudent.get();
       if(student.firstName() != null) {
         studentToUpdate.setFirstName(student.firstName());
       }
@@ -71,7 +71,7 @@ public class StudentService {
     return existingStudent;
   }
 
-  private StudentResponseDTO toDTO(Student studentEntity) {
+  private StudentResponseDTO toDTO(Teacher studentEntity) {
     StudentResponseDTO dto = new StudentResponseDTO(
         studentEntity.getId(),
         studentEntity.getFirstName(),
@@ -85,8 +85,8 @@ public class StudentService {
     return dto;
   }
 
-  private Student fromDTO(StudentRequestDTO studentDTO) {
-    Student entity = new Student(
+  private Teacher fromDTO(StudentRequestDTO studentDTO) {
+    Teacher entity = new Teacher(
         studentDTO.firstName(),
         studentDTO.middleName(),
         studentDTO.lastName(),
