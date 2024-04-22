@@ -18,6 +18,7 @@ public class Student {
   private Integer schoolYear; // 1-7
 
   public Student() {
+
   }
 
   public Student(String firstName, String lastName, House house, int schoolYear) {
@@ -98,13 +99,28 @@ public class Student {
   }
 
   public void setFullName(String fullName) {
-    int firstSpace = fullName.indexOf(" ");
-    int lastSpace = fullName.lastIndexOf(" ");
+    if (fullName == null) {
+      this.firstName = null;
+      this.middleName = null;
+      this.lastName = null;
+    } else {
+      int firstSpace = fullName.indexOf(" ");
+      int lastSpace = fullName.lastIndexOf(" ");
 
-    setFirstName(fullName.substring(0, firstSpace));
-    setMiddleName(fullName.substring(firstSpace + 1, lastSpace));
-    setLastName(fullName.substring(lastSpace + 1));
+      if (firstSpace == -1) {
+        setFirstName(fullName);
+        setMiddleName(null);
+        setLastName(null);
+      } else if (firstSpace == lastSpace) {
+        setFirstName(fullName.substring(0, firstSpace));
+        setMiddleName(fullName.substring(firstSpace + 1));
+        setLastName(null);
+      } else {
+        setFirstName(fullName.substring(0, firstSpace));
+        setMiddleName(fullName.substring(firstSpace + 1, lastSpace));
+        setLastName(fullName.substring(lastSpace + 1));
+      }
+    }
   }
-
 
 }
